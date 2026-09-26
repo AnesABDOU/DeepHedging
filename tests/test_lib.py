@@ -1,4 +1,6 @@
-import deep_hedging as dh
-
 def test_import() -> None:
-    assert dh is not None
+    try:
+        import deep_hedging as dh
+    except ImportError as e:
+        import pytest
+        pytest.fail(f"Failed to import deep_hedging: {e}")
