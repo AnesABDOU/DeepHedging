@@ -7,12 +7,7 @@ authors = [
     { name = "AnesABDOU", email = "anes.abdou@etu.sorbonne-universite.fr" }
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "matplotlib>=3.11.1",
-    "pandas>=3.0.5",
-    "polars>=1.44.1",
-    "scipy>=1.18.1",
-]
+dependencies = []
 
 [build-system]
 requires = ["uv_build>=0.11.12,<0.12.0"]
