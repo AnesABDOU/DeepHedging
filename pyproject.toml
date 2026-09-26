@@ -1,7 +1,7 @@
 [project]
 name = "deep_hedging"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Python package for deep hedging strategies in financial markets."
 readme = "README.md"
 authors = [
     { name = "AnesABDOU", email = "anes.abdou@etu.sorbonne-universite.fr" }
