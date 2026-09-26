@@ -95,7 +95,7 @@ wheels = [
 ]
 
 [[package]]
-name = "dh"
+name = "deep-hedging"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
