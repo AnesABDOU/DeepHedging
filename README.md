@@ -22,6 +22,7 @@ uv run ruff check .
 ```
 
 ## Status
-
-Git initialization done: package skeleton, locked dependencies, test suite runs.
-Next: the P&L engine.
+| Task | Status | Details |
+| :--- | :--- | :--- |
+| Git initialization | done | package skeleton, locked dependencies, test suite runs. |
+| The P&L engine     | done | one basic over one path PnL engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
