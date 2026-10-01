@@ -76,7 +76,7 @@ uv run ruff check .
 ```
 
 ## Status
-V1. Discovery:
+V1. MVP of the project:
 
 | Task | Status | Details |
 | :--- | :--- | :--- |
@@ -94,7 +94,7 @@ V1. Discovery:
 | README + limitations | work in progress | Figures, results, honest limitations |
 | :--- | :--- | :--- |
 
-V2. Deeper exploration:
+V2. Deeper:
 
 | Task | Status | Details |
 | :--- | :--- | :--- |
