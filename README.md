@@ -41,6 +41,7 @@ with
 $$
 \min_\theta \ \rho\big(PL_T(Z, p_0, \delta^\theta)\big).
 $$
+
 same as maximizing the Expected Utility of the $\bigPL_T$ with an exponential utility. [1]
 
 We have no labels: nobody tells the network what the right hedge is; it only sees how risky its final P&L is.
