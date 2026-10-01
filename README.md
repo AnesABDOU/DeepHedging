@@ -54,9 +54,9 @@ We have no labels: no supervised learning it only sees how risky its final P&L i
 
 **References**
 
--[1] H. Buehler, L. Gonon, J. Teichmann, B. Wood, *Deep hedging*, Quantitative Finance, 2019. arXiv:1802.03042
--[2] A. E. Whalley, P. Wilmott, *An asymptotic analysis of an optimal hedging model for option pricing with transaction costs*, Mathematical Finance, 1997
--[3] D. Bertsimas, L. Kogan, A. Lo, *When is time continuous?*, Journal of Financial Economics, 2000
+- [1] H. Buehler, L. Gonon, J. Teichmann, B. Wood, *Deep hedging*, Quantitative Finance, 2019. arXiv:1802.03042
+- [2] A. E. Whalley, P. Wilmott, *An asymptotic analysis of an optimal hedging model for option pricing with transaction costs*, Mathematical Finance, 1997
+- [3] D. Bertsimas, L. Kogan, A. Lo, *When is time continuous?*, Journal of Financial Economics, 2000
 
 ## Install
 
