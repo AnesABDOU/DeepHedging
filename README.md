@@ -34,7 +34,7 @@ with
 - $Z$ the payoff of the option at maturity,
 - $p_0$ the premium we receive,
 - $`(\delta \cdot S)_T := \sum_{k=0}^{n-1} \delta_k \cdot (S_{k+1} - S_k)`$ the trading gains,
-- $C_T(\delta) := \sum_{k=0}^{n} c_k(\delta_k - \delta_{k-1})$ the transaction costs, proportional in v1: $c_k(\delta_k - \delta_{k-1}) = \kappa \cdot |\delta_k - \delta_{k-1}| \cdot S_k$.
+- $C_T(\delta) := \sum_{k=0}^{n} c_k(\delta_k - \delta_{k-1})$ the transaction costs, proportional in v1: $c_k(\delta_k - \delta_{k-1}) = c \cdot |\delta_k - \delta_{k-1}| \cdot S_k$.
 
 **Objective.** The NN is trained to minimise a convex risk measure $\rho$ of the P&L (the entropic risk measure or CVaR in v1 as defined in [1]), estimated on simulated paths:
 
@@ -75,9 +75,42 @@ uv run ruff check .
 ```
 
 ## Status
+V1. Discovery:
+
 | Task | Status | Details |
 | :--- | :--- | :--- |
-| Git initialization | done | packages, skeleton of the project, dependencies, tests |
-| The P&L engine     | done | one basic over one path PnL engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
-| Price path sim gbm | done | vectorized gbm to simulate price paths |
+| Git initialization   | done    | packages, skeleton of the project, dependencies, tests |
+| The P&L engine       | done    | one basic over one path PnL engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
+| Price path sim gbm   | done    | vectorized gbm to simulate price paths |
+| BS delta baseline    | work in progress | Closed form price/delta + delta policy |
+| Transaction costs    | work in progress | Proportional costs in engine |
+| Risk measures        | work in progress | Expected exponential utility + CVaR |
+| Neural policy        | work in progress | Feedforward and previous position as input |
+| Training loop        | work in progress | Seeded script, config, saved artefacts |
+| NN recovers BS delta | work in progress | c = 0 -> learned hedge ~ BS delta |
+| Hedging under costs  | work in progress | NN vs BS delta across c |
+| Loss ablation        | work in progress | Reproduce the paper's Entropic vs CVaR |
+| README + limitations | work in progress | Figures, results, honest limitations |
+| :--- | :--- | :--- |
+
+V2. Deeper exploration:
+
+| Task | Status | Details |
+| :--- | :--- | :--- |
+| Whalley Wilmott baseline         | future work |  |
+| Band exponent                    | future work |  |
+| Heston simulator                 | future work |  |
+| Variance swap                    | future work |  |
+| Paper reproduction               | future work |  |
+| No transaction band network      | future work |  |
+| Architecture ablation            | future work |  |
+| CVaR state ablation              | future work |  |
+| Sample efficiency                | future work |  |
+| Gradient estimators              | future work |  |
+| Model misspecification           | future work |  |
+| Limitations write up             | future work |  |
+| Option instruments + Greek costs | future work |  |
+| Market data                      | future work |  |
+| Market generator                 | future work |  |
+| Real-data hedging                | future work |  |
 
