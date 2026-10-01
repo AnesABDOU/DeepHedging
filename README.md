@@ -50,7 +50,7 @@ We have no labels: nobody tells the network what the right hedge is; it only see
 
 1. *Without transaction costs*, deep hedging recovers the model hedge (comes from: Section 5.2, shown in a Heston model), and the indifference price equals the replication price (Lemma 3.3). In our Black Scholes setting the model hedge is the Black Scholes delta: the NN must recover it, and the indifference price must approach the Black Scholes price as the number of rebalancing dates grows.
 
-2. *With proportional transaction costs* $c_k(n) = \varepsilon \, |n| \, S_k$, the indifference price increases with the cost level as $p_\varepsilon - q = O(\varepsilon^{2/3})$ for small $\varepsilon$, where $q$ is the Black Scholes price. This asymptotic result is due to Whalley and Wilmott [2]; the paper verifies it numerically in a Black Scholes model with the entropic risk measure (comes from: Section 5.3). v1 reproduces this experiment.
+2. *With proportional transaction costs* $c_k(n) = \varepsilon \ |n| \ S_k$, the indifference price increases with the cost level as $p_\varepsilon - q = O(\varepsilon^{2/3})$ for small $\varepsilon$, where $q$ is the Black Scholes price. This asymptotic result is due to Whalley and Wilmott [2]; the paper verifies it numerically in a Black Scholes model with the entropic risk measure (comes from: Section 5.3). v1 reproduces this experiment.
 
 **References**
 
