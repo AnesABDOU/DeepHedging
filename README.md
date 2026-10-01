@@ -42,7 +42,7 @@ $$
 \min_\theta \ \rho\big(PL_T(Z, p_0, \delta^\theta)\big).
 $$
 
-maximizing the Expected Utility of the PnL under an exponential utility. (entropic) [1]
+maximizing the Expected Utility of the P&L under an exponential utility. (entropic) [1]
 
 We have no labels: nobody tells the network what the right hedge is; it only sees how risky its final P&L is.
 
@@ -81,7 +81,7 @@ V1. Discovery:
 | Task | Status | Details |
 | :--- | :--- | :--- |
 | Git initialization   | done    | packages, skeleton of the project, dependencies, tests |
-| The P&L engine       | done    | one basic over one path PnL engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
+| The P&L engine       | done    | one basic over one path P&L engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
 | Price path sim gbm   | done    | vectorized gbm to simulate price paths |
 | BS delta baseline    | work in progress | Closed form price/delta + delta policy |
 | Transaction costs    | work in progress | Proportional costs in engine |
