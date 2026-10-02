@@ -4,8 +4,8 @@ def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: float, c: float = 0.0) -> 
     """
         P&L of a option hedged with positions delta, one value per path.
         (N,) P&L = -payoff + p0 + (delta.S){T} - C{T}(delta)
-        gains formula: Σ_{k=0}^{n−1} δ_k · (S_{k+1} − S_k), summed over instruments
-        cost formula: Σ_{k=0}^{n} c · |δ_k − δ_{k−1}| · S_k, with δ_{−1} = δ_n = 0
+        gains formula: sum_{k=0}^{n−1} delta_{k} · (S_{k+1} − S_{k}), summed over instruments
+        cost formula: sum_{k=0}^{n} c · |delta_{k} − delta_{k−1}| · S_k, with delta_{−1} = delta_{n} = 0
     """
     N, n_dates, d = S.shape
     

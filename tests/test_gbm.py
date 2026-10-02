@@ -5,7 +5,7 @@ import torch
 
 from deep_hedging.gbm import simulate_gbm
 
-def _gbm(seed: int = 0):
+def _gbm(seed = 0):
     g = torch.Generator().manual_seed(seed)
     return g
 
