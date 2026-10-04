@@ -33,8 +33,8 @@ $$
 with
 - $Z$ the payoff of the option at maturity
 - $p_0$ the premium we receive
-- $`(\delta \cdot S)_T := \sum_{k=0}^{n-1} \delta_k \cdot (S_{k+1} - S_k)`$ the trading gains
-- $C_T(\delta) := \sum_{k=0}^{n} c_k(\delta_k - \delta_{k-1})$ the transaction costs, proportional in v1: $c_k(\delta_k - \delta_{k-1}) = c \cdot |\delta_k - \delta_{k-1}| \cdot S_k$
+- $`(\delta \cdot S)_T = \sum_{k=0}^{n-1} \delta_k \cdot (S_{k+1} - S_k)`$ the trading gains
+- $C_T(\delta) = \sum_{k=0}^{n} c_k(\delta_k - \delta_{k-1})$ the transaction costs, proportional in v1: $c_k(\delta_k - \delta_{k-1}) = c \cdot |\delta_k - \delta_{k-1}| \cdot S_k$
 
 **Objective.** The NN is trained to minimise a convex risk measure $\rho$ of the P&L (the entropic risk measure or CVaR in v1 as defined in [1]), estimated on simulated paths:
 
