@@ -83,7 +83,7 @@ V1. MVP of the project:
 | Git initialization   | done    | packages, skeleton of the project, dependencies, tests |
 | The P&L engine       | done    | one basic over one path P&L engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
 | Price path sim gbm   | done    | vectorized gbm to simulate price paths |
-| BS delta baseline    | work in progress | Closed form price/delta + delta policy |
+| BS delta baseline    | done | Closed form price/delta + delta policy and checked for validation in notebooks |
 | Transaction costs    | work in progress | Proportional costs in engine |
 | Risk measures        | work in progress | Expected exponential utility + CVaR |
 | Neural policy        | work in progress | Feedforward and previous position as input |
