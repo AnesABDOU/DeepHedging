@@ -84,8 +84,8 @@ V1. MVP of the project:
 | The P&L engine       | done    | one basic over one path P&L engine, one vectoried using torch Tensors, Then generated random paths to test the vectorized against the basic |
 | Price path sim gbm   | done    | vectorized gbm to simulate price paths |
 | BS delta baseline    | done | Closed form price/delta + delta policy and checked for validation in notebooks |
-| Transaction costs    | work in progress | Proportional costs in engine |
-| Risk measures        | work in progress | Expected exponential utility + CVaR |
+| Transaction costs    | done | Proportional costs in engine |
+| Risk measures        | work in progress | Expected exponential utility + CVaR (ES) |
 | Neural policy        | work in progress | Feedforward and previous position as input |
 | Training loop        | work in progress | Seeded script, config, saved artefacts |
 | NN recovers BS delta | work in progress | c = 0 -> learned hedge ~ BS delta |
