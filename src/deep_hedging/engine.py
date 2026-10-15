@@ -1,6 +1,6 @@
 from torch import Tensor
 
-def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: float, c: float = 0.0) -> Tensor:
+def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: Tensor | float, c: float = 0.0) -> Tensor:
     """
         P&L of a option hedged with positions delta, one value per path.
         (N,) P&L = -payoff + p0 + (delta.S){T} - C{T}(delta)
