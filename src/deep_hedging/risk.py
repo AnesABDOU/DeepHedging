@@ -14,14 +14,24 @@ def entropic_risk(x: torch.Tensor, lam: float):
 
 def cvar_oce(x: torch.Tensor, w: torch.Tensor, alpha: float):
     """
-    OCE objective w + E[max(-X - w, 0)] / (1 - alpha)]
+    OCE objective w + E[max(-X - w, 0)] / (1 - alpha)
     Min over w = CVaR | argmin = VaR
     """
-    
+    N = x.shape[0]
+    #relu : max(X, 0)
+    ru = w + 1/N * torch.sum(torch.relu(-x - w)) / (1 - alpha)
+    return ru
 
 def cvar_empirical(x: torch.Tensor, alpha: float):
     """
-    Mean of the worst ceil((1 - alpha) N) losses -X
+    Mean of the worst round((1 - alpha) N) losses -X
     for test only
+    returns (VaR, CVaR)
     """
+    k = max(1, round((1-alpha) * x.shape[0]))
+    l = -x
+    top_k = torch.topk(l, k).values
+    VaR = top_k[-1]
+    CVaR = torch.mean(top_k)
+    return VaR, CVaR
     
