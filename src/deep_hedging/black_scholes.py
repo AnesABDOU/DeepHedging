@@ -1,5 +1,7 @@
 import torch
 
+#formulas in the notebook : bs_delta_hedge
+
 def black_scholes_call_delta(S, K, tau, sigma, r=0.0):
     
     safeguard_tau = torch.where(tau > 0, tau, torch.ones_like(tau))
