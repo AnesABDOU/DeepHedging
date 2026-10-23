@@ -86,7 +86,7 @@ V1. MVP of the project:
 | BS delta baseline    | done | Closed form price/delta + delta policy and checked for validation in notebooks |
 | Transaction costs    | done | Proportional costs in engine |
 | Risk measures        | done | Expected exponential utility + CVaR (ES) |
-| Neural policy        | work in progress | Feedforward and previous position as input |
+| Neural policy        | done | Feedforward and previous position as input |
 | Training loop        | work in progress | Seeded script, config, saved artefacts |
 | NN recovers BS delta | work in progress | c = 0 -> learned hedge ~ BS delta |
 | Hedging under costs  | work in progress | NN vs BS delta across c |
