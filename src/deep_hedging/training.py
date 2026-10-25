@@ -50,3 +50,50 @@ def risk_loss(X, config, w=None):
     else:
         raise ValueError(f"Unknown Risk Measure Called, you called: {name}")
     
+
+def training(ffn, w, config):
+    """
+    trains the feed forward nn per batch
+    we generate n_iters batch of price paths
+    compute the loss
+    backpropagation
+    take an Adaptative Moment Estimation step
+    """
+    
+    batch_size = config["training"]["batch_size"]
+    n_iters = config["training"]["n_iters"]
+    lr = config["training"]["lr"]
+    
+    S0 = config["market"]["S0"]
+    mu = config["market"]["mu"]
+    sigma = config["market"]["sigma"]
+    T = config["market"]["T"]
+    n_steps = config["market"]["n_steps"]
+    
+    params = list(ffn.parameters())
+    
+    if w is not None:
+        params.append(w)
+        
+    optimizer = torch.optim.Adam(params, lr=lr)
+    
+    history = []
+    
+    for i in range(n_iters):
+        
+        S, _ = simulate_gbm(S0, mu, sigma, T, n_steps, batch_size)
+        pl = hedge_pnl(ffn, S, config)
+        
+        loss = risk_loss(pl, config, w)
+        
+        optimizer.zero_grad()        
+        loss.backward()
+        optimizer.step()
+        
+        if i % 100 == 0:
+            loss_value = loss.item()
+            print(f"Step: {i}/{n_iters} ({i/n_iters:.0%})      Loss: {loss_value:.4f}")
+
+        history.append(loss_value)
+        
+    return history
