@@ -16,9 +16,9 @@ def build_nn(n_inputs, n_outputs=1, n_hidden=16, n_layers=2):
     # no ReLU on the last layer because it can prevent delta < 0
     layers.append(nn.Linear(n_hidden, n_outputs))
     
-    ffn = nn.Sequential(*layers)
+    fnn = nn.Sequential(*layers)
     
-    return ffn
+    return fnn
     
     
        
