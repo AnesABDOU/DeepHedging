@@ -2,8 +2,6 @@ import torch
 import torch.nn as nn
 from deep_hedging.features import make_features
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
 def build_nn(n_inputs, n_outputs=1, n_hidden=16, n_layers=2):
     """
     n_inputs = 3 : log moneyness, tau, and delta{k-1}, we give the time to maturity as an input to the feedforward NN deliberatly

@@ -1,5 +1,4 @@
 import math
-from torch import Tensor
 import torch
 
 # simulating N paths of a Geometric Brownian Motion
