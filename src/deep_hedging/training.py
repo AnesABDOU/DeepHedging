@@ -49,7 +49,7 @@ def risk_loss(X, config, w=None):
         raise ValueError(f"Unknown Risk Measure Called, you called: {name}")
     
 
-def training(ffn, w, config):
+def training(fnn, w, config):
     """
     trains the feed forward nn per batch
     we generate n_iters batch of price paths
@@ -68,7 +68,7 @@ def training(ffn, w, config):
     T = config["market"]["T"]
     n_steps = config["market"]["n_steps"]
     
-    params = list(ffn.parameters())
+    params = list(fnn.parameters())
     
     if w is not None:
         params.append(w)
@@ -80,7 +80,7 @@ def training(ffn, w, config):
     for i in range(n_iters):
         
         S, _ = simulate_gbm(S0, mu, sigma, T, n_steps, batch_size)
-        pl = hedge_pnl(ffn, S, config)
+        pl = hedge_pnl(fnn, S, config)
         
         loss = risk_loss(pl, config, w)
         
