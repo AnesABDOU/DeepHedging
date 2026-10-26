@@ -34,7 +34,7 @@ def main(config_path):
     test_paths = config["test"]["n_paths"] # test seed
     
     torch.manual_seed(config["test_seed"])
-    test_set, _ = simulate_gbm(S0, mu, sigma, T, n_steps, test_paths)
+    _, test_set = simulate_gbm(S0, mu, sigma, T, n_steps, test_paths)
 
     # build network:
     n_inputs = config["network"]["n_input"]

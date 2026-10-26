@@ -79,7 +79,7 @@ def training(fnn, w, config):
     
     for i in range(n_iters):
         
-        S, _ = simulate_gbm(S0, mu, sigma, T, n_steps, batch_size)
+        _, S = simulate_gbm(S0, mu, sigma, T, n_steps, batch_size)
         pl = hedge_pnl(fnn, S, config)
         
         loss = risk_loss(pl, config, w)
