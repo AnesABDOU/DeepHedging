@@ -1,12 +1,10 @@
 import torch
-from deep_hedging.nn_policy import build_nn, nn_policy
+from deep_hedging.nn_policy import nn_policy
 from deep_hedging.features import make_features
-from deep_hedging.risk import entropic_risk
+from deep_hedging.risk import entropic_risk, cvar_oce, cvar_empirical
 from deep_hedging.engine import pnl
 from deep_hedging.payoffs import call_payoff
 from deep_hedging.gbm import simulate_gbm
-
-from deep_hedging.risk import cvar_oce, entropic_risk
 
 def hedge_pnl(fnn, S, config):
     """
@@ -97,3 +95,38 @@ def training(ffn, w, config):
         history.append(loss_value)
         
     return history
+
+
+def pnl_metrics(X, config):
+    """
+    calculates the pnl's metric : mean | std | entropic risk | VaR | CVaR
+    """
+    lam = config["risk"]["lam"]
+    alpha = config["risk"]["alpha"]
+    
+    mean = torch.mean(X)
+    std = torch.std(X)
+    entropic = entropic_risk(X, lam)
+    var, cvar = cvar_empirical(X, alpha)
+    
+    metrics = {
+        "pnl_mean":mean.item(),
+        "pnl_std":std.item(),
+        "entropic_risk": entropic.item(),
+        "var":var.item(),
+        "cvar":cvar.item()
+    }
+
+    return metrics
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
