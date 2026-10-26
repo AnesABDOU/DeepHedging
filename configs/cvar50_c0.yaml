@@ -34,4 +34,4 @@ training:
   lr: 0.001
 
 test:
-n_paths: 100000
+  n_paths: 100000
