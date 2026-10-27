@@ -88,8 +88,9 @@ def training(fnn, w, config):
         loss.backward()
         optimizer.step()
         
+        loss_value = loss.item()
+        
         if i % 100 == 0:
-            loss_value = loss.item()
             print(f"Step: {i}/{n_iters} ({i/n_iters:.0%})      Loss: {loss_value:.4f}")
 
         history.append(loss_value)
