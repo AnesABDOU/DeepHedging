@@ -87,7 +87,7 @@ V1. MVP of the project:
 | Transaction costs    | done | Proportional costs in engine |
 | Risk measures        | done | Expected exponential utility + CVaR (ES) |
 | Neural policy        | done | Feedforward and previous position as input |
-| Training loop        | work in progress | Seeded script, config, saved artefacts |
+| Training loop        | done | A seeded script, config, saved metrics from training, the loss and the model weights alongside ploting the training loss |
 | NN recovers BS delta | work in progress | c = 0 -> learned hedge ~ BS delta |
 | Hedging under costs  | work in progress | NN vs BS delta across c |
 | Loss ablation        | work in progress | Reproduce the paper's Entropic vs CVaR |
