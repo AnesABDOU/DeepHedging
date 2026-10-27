@@ -1,4 +1,4 @@
 import numpy as np
 
-def call_payoff(strike, S):
-    return np.maximum(S - strike, 0)
+def call_payoff(K, S):
+    return np.maximum(S - K, 0)

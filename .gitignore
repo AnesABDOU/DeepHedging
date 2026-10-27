@@ -17,6 +17,7 @@ dist/
 # Project artefacts — generated, never committed
 data/
 artifacts/
+runs/
 
 # OS / editor
 .DS_Store

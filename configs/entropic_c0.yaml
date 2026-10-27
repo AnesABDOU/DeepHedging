@@ -1,0 +1,37 @@
+# config file for the entropic risk measure
+
+run_name: entropic_nocost_seed0
+seed: 0
+test_seed: 12345
+
+market:
+  S0: 100.0
+  mu: 0.0
+  sigma: 0.2
+  r: 0.0
+  T: 0.08219178 # ~30/365 one month maturity options gives 30trading days a year following the paper's setup
+  n_steps: 30
+
+option:
+  K: 100.0
+
+costs:
+  c: 0.0
+
+risk:
+  name: entropic
+  lam: 1.0
+  alpha: 0.5
+
+network:
+  n_input: 3
+  n_hidden: 16
+  n_layers: 2
+
+training:
+  batch_size: 1024
+  n_iters: 2000
+  lr: 0.001
+
+test:
+  n_paths: 100000
