@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from deep_hedging.features import make_features
 
 def build_nn(n_inputs, n_outputs=1, n_hidden=16, n_layers=2):
     """

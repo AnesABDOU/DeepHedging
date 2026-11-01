@@ -18,6 +18,10 @@ option:
 costs:
   c: 0.0
 
+input_scale:
+  moneyness_scale: 1.0
+  tau_scale: 1.0
+
 risk:
   name: cvar
   lam: 1.0
