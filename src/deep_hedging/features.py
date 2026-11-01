@@ -1,6 +1,6 @@
 import torch
 
-def make_features(S:torch.Tensor, t:torch.Tensor, T:float, K:float):
+def make_features(S:torch.Tensor, t:torch.Tensor, T:float, K:float, moneyness_scale=1.0, tau_scale=1.0):
     """
     S : price paths (N, t+1, d_instruments), t : time (t+1), T : maturity, K: strike.
     GBM is Markov so the future depends only on today's price:
@@ -9,8 +9,8 @@ def make_features(S:torch.Tensor, t:torch.Tensor, T:float, K:float):
     outputs features concatenated of shape (N, n, d+1)
     """
     N = S.shape[0]
-    log_moneyness = torch.log(S[:,:-1,:]/K)
-    tau = (T-t[:-1]).view(1, -1, 1).expand(N, -1, -1)
+    log_moneyness = torch.log(S[:,:-1,:]/K) / moneyness_scale
+    tau = ((T-t[:-1]) / tau_scale).view(1, -1, 1).expand(N, -1, -1)
     
     features = torch.cat([log_moneyness, tau], dim=-1)
     
