@@ -14,10 +14,12 @@ def hedge_pnl(fnn, S, config):
     K = config["option"]["K"]
     c = config["costs"]["c"]
     n_steps = config["market"]["n_steps"]
+    moneyness_scale = config["input_scale"]["moneyness_scale"]
+    tau_scale = config["input_scale"]["tau_scale"]
     
     t = torch.linspace(0.0, T, n_steps+1, dtype=S.dtype)
     
-    features = make_features(S, t, T, K)
+    features = make_features(S, t, T, K, moneyness_scale, tau_scale)
     delta = nn_policy(fnn, features)
     
     payoff = call_payoff(K, S[:, -1, 0])
