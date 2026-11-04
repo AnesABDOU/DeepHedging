@@ -19,7 +19,7 @@ costs:
   c: 0.0
 
 input_scale:
-  moneyness_scale: 0.0399   # std of log moneyness over test paths and dates (notebook)
+  moneyness_scale: 0.04   # ~ std of log moneyness over test paths and dates (notebook: nn_res_analysis)
   tau_scale: 0.08219178     # = T, so the time feature lies in [0, 1]
 
 risk:
