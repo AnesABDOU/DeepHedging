@@ -6,7 +6,7 @@ import json
 import polars as pl
 from pathlib import Path
 
-from deep_hedging.training import hedge_pnl, training, pnl_metrics
+from deep_hedging.training import hedge_pnl, bs_hedge_pnl, training, pnl_metrics
 from deep_hedging.gbm import simulate_gbm
 from deep_hedging.nn_policy import build_nn
 from deep_hedging.black_scholes import black_scholes_call_price
@@ -60,11 +60,23 @@ def main(config_path):
     # compute metrics
     with torch.no_grad():
         agent_pnl = hedge_pnl(fnn, test_set, config)
+        agent_pnl_0 = hedge_pnl(fnn, test_set, config, c=0.0)
+        
     metrics = pnl_metrics(agent_pnl, config)
+
+    metrics["mean_cost"] = (agent_pnl_0 - agent_pnl).mean().item()
+
+    # metrics on bs pnl:
+    bs_pnl = bs_hedge_pnl(test_set, config)
+    bs_pnl_0 = bs_hedge_pnl(test_set, config, c=0.0)
+    bs_metrics = pnl_metrics(bs_pnl, config)
+    bs_metrics["mean_cost"] = (bs_pnl_0 - bs_pnl).mean().item()
+    
+    metrics.update({f"bs_{k}": v for k, v in bs_metrics.items()})
 
     if w is not None:
         metrics["trained_var"] = w.item()
-    
+        
     # save artefacts
     torch.save(fnn.state_dict(), f"{run_dir}/model.pt")
     shutil.copy(config_path, f"{run_dir}/config.yaml")
