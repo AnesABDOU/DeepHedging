@@ -1,3 +1,5 @@
+from logging import config
+
 import torch
 import argparse
 import yaml
@@ -11,7 +13,7 @@ from deep_hedging.gbm import simulate_gbm
 from deep_hedging.nn_policy import build_nn
 from deep_hedging.black_scholes import black_scholes_call_price
 
-def main(config_path):
+def main(config_path, c=None, seed=None):
     
     # Config set up
     with open(config_path) as f:
@@ -20,6 +22,15 @@ def main(config_path):
     # Set up the device to generate paths and train the fnn
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    if c is not None:
+        config["costs"]["c"] = c
+    
+    if seed is not None:
+        config["seed"] = seed
+    
+    if c is not None and seed is not None:
+        config["run_name"] = f"{config['run_name']}_c{c}_seed{seed}"
+        
     # runs versionning:
     run_dir = Path("runs") / config["run_name"]
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -80,8 +91,8 @@ def main(config_path):
         
     # save artefacts
     torch.save(fnn.state_dict(), f"{run_dir}/model.pt")
-    shutil.copy(config_path, f"{run_dir}/config.yaml")
-    
+    with open(run_dir / "config.yaml", "w") as f:
+        yaml.safe_dump(config, f)  
     with open(run_dir / "metrics.json", "w") as file:
         json.dump(metrics, file, indent=2)
     
@@ -92,5 +103,7 @@ def main(config_path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
+    parser.add_argument("--c", type=float)
+    parser.add_argument("--seed", type=int)
     args = parser.parse_args()
-    main(args.config)
+    main(args.config, args.c, args.seed)
