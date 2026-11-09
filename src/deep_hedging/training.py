@@ -1,18 +1,21 @@
 import torch
 from deep_hedging.nn_policy import nn_policy
+from deep_hedging.delta import bs_hedge_policy
 from deep_hedging.features import make_features
 from deep_hedging.risk import entropic_risk, cvar_oce, cvar_empirical
 from deep_hedging.engine import pnl
 from deep_hedging.payoffs import call_payoff
 from deep_hedging.gbm import simulate_gbm
 
-def hedge_pnl(fnn, S, config):
+
+
+def hedge_pnl(fnn, S, config, c=None):
     """
     calculates the final pnl of someone who sold a call
     """
     T = config["market"]["T"]
     K = config["option"]["K"]
-    c = config["costs"]["c"]
+    c = config["costs"]["c"] if c is None else c
     n_steps = config["market"]["n_steps"]
     moneyness_scale = config["input_scale"]["moneyness_scale"]
     tau_scale = config["input_scale"]["tau_scale"]
@@ -21,6 +24,29 @@ def hedge_pnl(fnn, S, config):
     
     features = make_features(S, t, T, K, moneyness_scale, tau_scale)
     delta = nn_policy(fnn, features)
+    
+    payoff = call_payoff(K, S[:, -1, 0])
+    
+    pl = pnl(payoff, S, delta, p0=0.0, c=c)
+    
+    return pl
+
+
+def bs_hedge_pnl(S, config, c=None):
+    """
+    Same as hedge_pnl but uses the Black Scholes formula to compute the delta instead of a neural network
+    """
+    T = config["market"]["T"]
+    K = config["option"]["K"]
+    c = config["costs"]["c"] if c is None else c
+    sigma = config["market"]["sigma"]
+    r = config["market"]["r"]
+    
+    n_steps = config["market"]["n_steps"]
+    
+    t = torch.linspace(0.0, T, n_steps+1, dtype=S.dtype)
+    
+    delta = bs_hedge_policy(S[:, :-1, :], sigma, T, t[:-1], K, r)
     
     payoff = call_payoff(K, S[:, -1, 0])
     
