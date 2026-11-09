@@ -63,7 +63,10 @@ def main(config_path):
         agent_pnl_0 = hedge_pnl(fnn, test_set, config, c=0.0)
         
     metrics = pnl_metrics(agent_pnl, config)
-
+    
+    if w is not None:
+        metrics["trained_var"] = w.item()
+        
     metrics["mean_cost"] = (agent_pnl_0 - agent_pnl).mean().item()
 
     # metrics on bs pnl:
@@ -74,8 +77,6 @@ def main(config_path):
     
     metrics.update({f"bs_{k}": v for k, v in bs_metrics.items()})
 
-    if w is not None:
-        metrics["trained_var"] = w.item()
         
     # save artefacts
     torch.save(fnn.state_dict(), f"{run_dir}/model.pt")
