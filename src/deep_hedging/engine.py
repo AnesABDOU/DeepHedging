@@ -1,6 +1,6 @@
 from torch import Tensor
 
-def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: Tensor | float, c: float = 0.0) -> Tensor:
+def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: Tensor | float, c: float = 0.0, charge_liquidation=True) -> Tensor:
     """
         P&L of a option hedged with positions delta, one value per path.
         (N,) P&L = -payoff + p0 + (delta.S){T} - C{T}(delta)
@@ -24,6 +24,12 @@ def pnl(payoff: Tensor, S: Tensor, delta: Tensor, p0: Tensor | float, c: float =
     
     flat = delta.new_zeros(N, 1, d)
     trades = delta.diff(dim=1, prepend=flat, append=flat)
-    costs = c * (S * trades.abs()).sum(dim=(1, 2))
+    
+    trade_prices = S
+    if not charge_liquidation:
+        # if we don't want to charge liquidation costs, we remove the last timestep from trades and trade_prices
+        trades = trades[:, :-1]
+        trade_prices = S[:, :-1]
+    costs = c * (trade_prices * trades.abs()).sum(dim=(1, 2))
     
     return p0 - payoff + gains - costs
