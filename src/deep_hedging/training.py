@@ -16,6 +16,8 @@ def hedge_pnl(fnn, S, config, c=None):
     T = config["market"]["T"]
     K = config["option"]["K"]
     c = config["costs"]["c"] if c is None else c
+    charge_liquidation = config["costs"].get("charge_liquidation", True)
+    
     n_steps = config["market"]["n_steps"]
     moneyness_scale = config["input_scale"]["moneyness_scale"]
     tau_scale = config["input_scale"]["tau_scale"]
@@ -27,7 +29,7 @@ def hedge_pnl(fnn, S, config, c=None):
     
     payoff = call_payoff(K, S[:, -1, 0])
     
-    pl = pnl(payoff, S, delta, p0=0.0, c=c)
+    pl = pnl(payoff, S, delta, p0=0.0, c=c, charge_liquidation=charge_liquidation)
     
     return pl
 
@@ -39,6 +41,7 @@ def bs_hedge_pnl(S, config, c=None):
     T = config["market"]["T"]
     K = config["option"]["K"]
     c = config["costs"]["c"] if c is None else c
+    charge_liquidation = config["costs"].get("charge_liquidation", True)
     sigma = config["market"]["sigma"]
     r = config["market"]["r"]
     
@@ -50,7 +53,7 @@ def bs_hedge_pnl(S, config, c=None):
     
     payoff = call_payoff(K, S[:, -1, 0])
     
-    pl = pnl(payoff, S, delta, p0=0.0, c=c)
+    pl = pnl(payoff, S, delta, p0=0.0, c=c, charge_liquidation=charge_liquidation)
     
     return pl
 
