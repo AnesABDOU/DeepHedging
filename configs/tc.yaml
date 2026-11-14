@@ -1,6 +1,6 @@
 # config file for the entropic risk measure
 
-run_name: entropic_tc
+run_name: entropic_tc_no_liquidation_costs
 seed: 0
 test_seed: 12345
 
@@ -9,7 +9,7 @@ market:
   mu: 0.0
   sigma: 0.2
   r: 0.0
-  T: 0.08219178 # ~30/365 one month maturity options gives 30trading days a year following the paper's setup
+  T: 0.08219178 # ~30/365 one month maturity options gives 30 trading days a year following the paper's setup
   n_steps: 30
 
 option:
@@ -17,6 +17,7 @@ option:
 
 costs:
   c: 0.01
+  charge_liquidation: false
 
 input_scale:
   moneyness_scale: 0.04   # ~ std of log moneyness over test paths and dates (notebook: nn_res_analysis)
