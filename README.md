@@ -2,9 +2,12 @@
 
 A personal project implementing *Deep Hedging* (Buehler, Gonon, Teichmann & Wood, 2019, [arXiv:1802.03042](https://arxiv.org/abs/1802.03042)): hedging a derivative with a neural network trained to minimise a risk measure of the final P&L under frictions
 
-The roadmap goes from a Black Scholes delta hedging baseline to a neural hedging policy, then adds transaction costs, CVaR and then Heston model (v2)
+The roadmap goes from a Black Scholes delta hedging baseline to a neural hedging policy trained on GBM simulated price paths, then adds transaction costs, Entropic Risk and CVaR Risk Measures. Then Heston model (will be added in v2)
 
+Made By Anes ABDOU
 ![Demo](scripts/hedge_animation.gif)
+
+Set up : one test path, 0.01 proportional transactionnal costs, entropic risk ($\lambda = 1$). We can see that the network trades less than the bs delta and keeps its position inside a learnt no trade band.
 
 ## Problem formalized
 
