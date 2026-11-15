@@ -2,7 +2,9 @@
 
 A personal project implementing *Deep Hedging* (Buehler, Gonon, Teichmann & Wood, 2019, [arXiv:1802.03042](https://arxiv.org/abs/1802.03042)): hedging a derivative with a neural network trained to minimise a risk measure of the final P&L under frictions
 
-The roadmap goes from a Black Scholes delta hedging baseline to a neural hedging policy, then adds transaction costs, CVaR and the Heston model (v2)
+The roadmap goes from a Black Scholes delta hedging baseline to a neural hedging policy, then adds transaction costs, CVaR and then Heston model (v2)
+
+![Demo](scripts/hedge_animation.gif)
 
 ## Problem formalized
 
