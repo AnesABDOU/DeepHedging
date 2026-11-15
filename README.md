@@ -10,7 +10,7 @@ Following the setup of Buehler et al. (2019):
 
 **Setup.** Time grid $0 = t_0 < t_1 < \dots < t_n = T$. There are $d$ hedging instruments with prices $S_k \in \mathbb{R}^d$ at $t_k$. No risk neutral measure for price paths simulation. Interest rates r = 0. Incomplete market with frictions
 
-In v1, $d = 1$ and $S$ follows a geometric Brownian motion with $\mu = 0$ and volatility $\sigma$. The NN is short a European call paying $Z = max(S_n - K, 0)$ at $T$, and receives a premium $p_0$ at $t_0$
+In v1, $d = 1$ and $S$ follows a geometric Brownian motion with $\mu$ and volatility $\sigma$. The NN is short a European call paying $Z = max(S_n - K, 0)$ at $T$, and receives a premium $p_0$ at $t_0$
 
 **Information.** At each date $t_k$ the market reveals new information $I_k$. A decision taken at $t_k$ can only use what is known so far, $I_0, \dots, I_k$ (natural filtration)
 
