@@ -94,7 +94,7 @@ V1. MVP of the project:
 | Neural policy        | done | Feedforward and previous position as input |
 | Training loop        | done | A seeded script, config, saved metrics from training, the loss and the model weights alongside ploting the training loss |
 | NN recovers BS delta | done | c = 0 -> learned hedge ~ BS delta + plots to compare well trained NN against ill trained NN |
-| Hedging under costs  | work in progress | NN vs BS delta across c |
+| Hedging under costs  | done | NN vs BS delta across c |
 | Loss ablation        | work in progress | Reproduce the paper's Entropic vs CVaR |
 | README + limitations | work in progress | Figures, results, honest limitations |
 | :--- | :--- | :--- |
